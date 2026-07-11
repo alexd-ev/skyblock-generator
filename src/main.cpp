@@ -6,6 +6,9 @@ int main() {
     try {
         mcpp::MinecraftConnection mc;
         skyblock_generator::postTeleportMessage(mc);
+        skyblock_generator::postIslandCreationMessage(mc);
+        skyblock_generator::postIslandCreationSuccessMessage(mc);
+        skyblock_generator::postIslandRecreationMessage(mc);
     }
     catch (const std::exception& e) {
         std::println(stderr, "{}", e.what());
