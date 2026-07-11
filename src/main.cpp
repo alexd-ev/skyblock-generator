@@ -1,14 +1,14 @@
 #include <skyblock_generator/chat_utils.hpp>
-#include <mcpp/mcpp.h>
+#include <skyblock_generator/Island.hpp>
 #include <print>
 
 int main() {
     try {
-        mcpp::MinecraftConnection mc;
-        skyblock_generator::postTeleportMessage(mc);
-        skyblock_generator::postIslandCreationMessage(mc);
-        skyblock_generator::postIslandCreationSuccessMessage(mc);
-        skyblock_generator::postIslandRecreationMessage(mc);
+        mcpp::MinecraftConnection mc{};
+        skyblock_generator::Island island{ 6, 6, 3, { 0, 60, 0 }, mc };
+        island.teleportToIsland();
+        island.setIsland(false);
+        island.setIsland();
     }
     catch (const std::exception& e) {
         std::println(stderr, "{}", e.what());
