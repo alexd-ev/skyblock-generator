@@ -8,7 +8,7 @@ int main() {
         skyblock_generator::Island island{ 6, 6, 3, { 0, 60, 0 }, mc };
         island.teleportToIsland();
         island.createIsland();
-        // island.destroyIsland();
+        island.destroyIsland();
     }
     catch (const std::exception& e) {
         std::println(stderr, "{}", e.what());
