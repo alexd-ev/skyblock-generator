@@ -12,7 +12,8 @@ namespace skyblock_generator {
 
     private:
         void createLShapeIsland(std::uint8_t x, std::uint8_t length);
-        void setIslandBlock(std::uint8_t x, std::uint8_t y, std::uint8_t z, mcpp::BlockType block);
+        void setIslandBlock(mcpp::Coordinate coord, mcpp::BlockType block);
+        void addChestWithContents(mcpp::Coordinate chestCoord, const std::array<std::pair<std::string, int>, 7>& contents);
 
         std::uint8_t width{};
         std::uint8_t length{};
