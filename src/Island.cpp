@@ -7,8 +7,8 @@ namespace skyblock_generator {
         islandBlockCoords.reserve(width * length * height - width / 2 * length / 2 * height);
     }
 
-    void Island::teleportToIsland() {
-        mc.setPlayerPosition({ basepoint.x, basepoint.y + 10, basepoint.z });
+    void Island::teleportToIsland() const {
+        mc.setPlayerPosition({ basepoint.x + 10, basepoint.y + 10, basepoint.z + 10 });
     }
 
     void Island::createIsland() {
@@ -51,13 +51,18 @@ namespace skyblock_generator {
         }
     }
 
-    void Island::destroyIsland() {
+    void Island::removeIsland() {
         for (const auto& coord : islandBlockCoords) {
             setIslandBlock(coord, mcpp::Blocks::AIR);
         }
+        islandBlockCoords.clear();
     }
 
-    void Island::setIslandBlock(mcpp::Coordinate coord, mcpp::BlockType block) {
+    bool Island::islandExists() const {
+        return !islandBlockCoords.empty();
+    }
+
+    void Island::setIslandBlock(mcpp::Coordinate coord, mcpp::BlockType block) const {
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
         mc.setBlock(basepoint + coord, block);
     }
@@ -75,23 +80,29 @@ namespace skyblock_generator {
         setTreeHelperBlocks(treeCoord, mcpp::Blocks::STONE);
         setIslandBlock(treeCoord, mcpp::Blocks::OAK_SAPLING);
         setRandomTickSpeed("100000");
+        setItemDespawnTime("1");
         std::this_thread::sleep_for(std::chrono::seconds(5));
         setRandomTickSpeed("3");
+        setItemDespawnTime("6000");
         setTreeHelperBlocks(treeCoord, mcpp::Blocks::AIR);
         for (std::uint8_t y = 0; y < 5; ++y) {
             islandBlockCoords.push_back({ treeCoord.x, treeCoord.y + y, treeCoord.z });
         }
     }
 
-    void Island::setTreeHelperBlocks(mcpp::Coordinate treeCoord, mcpp::BlockType block) {
-        setIslandBlock({ treeCoord.x - 1, treeCoord.y + 2, treeCoord.z }, block);
-        setIslandBlock({ treeCoord.x, treeCoord.y + 2, treeCoord.z - 1 }, block);
-        setIslandBlock({ treeCoord.x + 1, treeCoord.y + 2, treeCoord.z }, block);
-        setIslandBlock({ treeCoord.x, treeCoord.y + 2, treeCoord.z + 1 }, block);
+    void Island::setTreeHelperBlocks(mcpp::Coordinate treeCoord, mcpp::BlockType block) const {
+        setIslandBlock({ treeCoord.x - 1, treeCoord.y + 3, treeCoord.z }, block);
+        setIslandBlock({ treeCoord.x, treeCoord.y + 3, treeCoord.z - 1 }, block);
+        setIslandBlock({ treeCoord.x + 1, treeCoord.y + 3, treeCoord.z }, block);
+        setIslandBlock({ treeCoord.x, treeCoord.y + 3, treeCoord.z + 1 }, block);
         setIslandBlock({ treeCoord.x, treeCoord.y + 8, treeCoord.z }, block);
     }
 
-    void Island::setRandomTickSpeed(const std::string& speed) {
+    void Island::setRandomTickSpeed(const std::string& speed) const {
         mc.doCommand("gamerule random_tick_speed " + speed);
+    }
+
+    void Island::setItemDespawnTime(const std::string& seconds) const {
+        mc.doCommand("execute as @e[type=item] run data merge entity @s {Age:" + seconds + "}");
     }
 }
