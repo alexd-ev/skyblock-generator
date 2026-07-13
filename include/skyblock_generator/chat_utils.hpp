@@ -21,10 +21,20 @@ namespace skyblock_generator {
         mc.postToChat("Island created successfully!");
     }
 
+    void postIslandRemovalMessage(mcpp::MinecraftConnection& mc) {
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        mc.postToChat("Removing island...");
+    }
+
+    void postIslandRemovalSuccessMessage(mcpp::MinecraftConnection& mc) {
+        std::this_thread::sleep_for(std::chrono::seconds(3));
+        mc.postToChat("Island removed successfully!");
+    }
+
     void postIslandRecreationMessage(mcpp::MinecraftConnection& mc) {
         std::this_thread::sleep_for(std::chrono::seconds(3));
         mc.postToChat("Island already created. Attempting to recreate...");
         std::this_thread::sleep_for(std::chrono::seconds(3));
-        mc.postToChat("Removing existing island...");
+        mc.postToChat("Removing old island...");
     }
 }
