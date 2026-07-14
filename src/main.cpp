@@ -1,25 +1,17 @@
+#include <skyblock_generator/menu_utils.hpp>
 #include <skyblock_generator/chat_utils.hpp>
 #include <skyblock_generator/Island.hpp>
-#include <print>
-#include <iostream>
 
 int main() {
     try {
         mcpp::MinecraftConnection mc{};
-        skyblock_generator::Island skyblockIsland{ 6, 6, 3, { 0, 60, 0 }, mc };
         mc.doCommand("time set day");
-        std::println("\nWelcome to the Minecraft Skyblock Generator!");
-        std::println("-------------------------------------------");
-        char userMenuItem{};
+        skyblock_generator::Island skyblockIsland{ 6, 6, 3, { 0, 60, 0 }, mc };
         std::uint8_t userMenuNum{};
+        skyblock_generator::printStartMessage();
         do {
-            std::println("\n---------------- MAIN MENU ----------------");
-            std::println("1) Create Island");
-            std::println("2) Remove Island");
-            std::println("3) Exit");
-            std::print("\nEnter Menu Item (1-3) to continue: ");
-            std::cin.get(userMenuItem);
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            skyblock_generator::printMainMenu();
+            char userMenuItem{ skyblock_generator::getUserMenuItem() };
             userMenuNum = userMenuItem - '0';
             switch (userMenuNum) {
                 case 1:
@@ -45,14 +37,14 @@ int main() {
                         skyblock_generator::postIslandRemovalSuccessMessage(mc);
                     }
                     else {
-                        std::println(stderr, "\nCannot remove island without creating an island...");
+                        skyblock_generator::printCannotRemoveMessage();
                     }
                     break;
                 case 3:
-                    std::println("\nThe End!");
+                    skyblock_generator::printExitMessage();
                     break;
                 default:
-                    std::println(stderr, "\nInput Error: Enter a Menu Item between 1 and 3...");
+                    skyblock_generator::printInputErrorMessage();
                     break;
             }
         } while (userMenuNum != 3 && !std::cin.eof());

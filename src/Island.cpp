@@ -79,7 +79,7 @@ namespace skyblock_generator {
     void Island::placeTree(mcpp::Coordinate treeCoord) {
         setTreeHelperBlocks(treeCoord, mcpp::Blocks::STONE);
         setIslandBlock(treeCoord, mcpp::Blocks::OAK_SAPLING);
-        setRandomTickSpeed("100000");
+        setRandomTickSpeed("10000");
         setItemDespawnTime("1");
         std::this_thread::sleep_for(std::chrono::seconds(5));
         setRandomTickSpeed("3");
@@ -91,10 +91,10 @@ namespace skyblock_generator {
     }
 
     void Island::setTreeHelperBlocks(mcpp::Coordinate treeCoord, mcpp::BlockType block) const {
-        setIslandBlock({ treeCoord.x - 1, treeCoord.y + 3, treeCoord.z }, block);
-        setIslandBlock({ treeCoord.x, treeCoord.y + 3, treeCoord.z - 1 }, block);
-        setIslandBlock({ treeCoord.x + 1, treeCoord.y + 3, treeCoord.z }, block);
-        setIslandBlock({ treeCoord.x, treeCoord.y + 3, treeCoord.z + 1 }, block);
+        setIslandBlock({ treeCoord.x - 1, treeCoord.y + 2, treeCoord.z }, block);
+        setIslandBlock({ treeCoord.x, treeCoord.y + 2, treeCoord.z - 1 }, block);
+        setIslandBlock({ treeCoord.x + 1, treeCoord.y + 2, treeCoord.z }, block);
+        setIslandBlock({ treeCoord.x, treeCoord.y + 2, treeCoord.z + 1 }, block);
         setIslandBlock({ treeCoord.x, treeCoord.y + 8, treeCoord.z }, block);
     }
 
