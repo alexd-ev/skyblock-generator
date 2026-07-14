@@ -1,6 +1,6 @@
+#include <skyblock_generator/Island.hpp>
 #include <skyblock_generator/menu_utils.hpp>
 #include <skyblock_generator/chat_utils.hpp>
-#include <skyblock_generator/Island.hpp>
 
 int main() {
     try {

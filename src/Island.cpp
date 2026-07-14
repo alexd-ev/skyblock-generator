@@ -68,10 +68,10 @@ namespace skyblock_generator {
     }
 
     void Island::placeChestWithContents(mcpp::Coordinate chestCoord, const std::array<std::pair<std::string, std::string>, 7>& chestContents) {
-        mc.doCommand("setblock " + std::to_string(basepoint.x + chestCoord.x) + " " + std::to_string(basepoint.y + chestCoord.y) + " " + std::to_string(basepoint.z + chestCoord.z) + " chest[facing=west]");
+        mc.doCommand(std::format("setblock {} {} {} chest[facing=west]", basepoint.x + chestCoord.x, basepoint.y + chestCoord.y, basepoint.z + chestCoord.z));
         std::uint8_t chestSlotIndex{ 0 };
         for (const auto& [item, count] : chestContents) {
-            mc.doCommand("item replace block " + std::to_string(basepoint.x + chestCoord.x) + " " + std::to_string(basepoint.y + chestCoord.y) + " " + std::to_string(basepoint.z + chestCoord.z) + " container." + std::to_string(chestSlotIndex++) + " with " + item + " " + count);
+            mc.doCommand(std::format("item replace block {} {} {} container.{} with {} {}", basepoint.x + chestCoord.x, basepoint.y + chestCoord.y, basepoint.z + chestCoord.z, chestSlotIndex++, item, count));
         }
         islandBlockCoords.push_back(chestCoord);
     }
@@ -93,10 +93,7 @@ namespace skyblock_generator {
     void Island::setTreeHelperBlocks(mcpp::Coordinate treeCoord, mcpp::BlockType block) const {
         setIslandBlock({ treeCoord.x - 1, treeCoord.y + 1, treeCoord.z }, block);
         setIslandBlock({ treeCoord.x - 1, treeCoord.y + 2, treeCoord.z }, block);
-        setIslandBlock({ treeCoord.x - 1, treeCoord.y + 3, treeCoord.z }, block);
-        setIslandBlock({ treeCoord.x, treeCoord.y + 3, treeCoord.z - 1 }, block);
-        setIslandBlock({ treeCoord.x + 1, treeCoord.y + 3, treeCoord.z }, block);
-        setIslandBlock({ treeCoord.x, treeCoord.y + 3, treeCoord.z + 1 }, block);
+        // setIslandBlock({ treeCoord.x - 1, treeCoord.y + 3, treeCoord.z }, block);
         setIslandBlock({ treeCoord.x, treeCoord.y + 8, treeCoord.z }, block);
     }
 
