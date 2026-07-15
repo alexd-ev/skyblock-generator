@@ -47,12 +47,14 @@ Island.cpp                                  - Island class definition
 ```
 skyblock-generator/
 ├── build/                                  - Generated build directory
+├── docs/images/
+│   └── *.png                               - Documentation images
 ├── include/skyblock_generator/
 │   └── *.hpp                               - Header files
 ├── src/
 │   ├── CMakeLists.txt                      - Configure build for library and executable
 │   └── *.cpp                               - C++ source files
-├── .gitignore                              - Ignore C++ files
+├── .gitignore                              - Ignore C++ and CMake files
 ├── CMakeLists.txt                          - Configure build
 ├── LICENSE                                 - GPL-3.0 licence
 └── README.md                               - Documentation

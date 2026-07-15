@@ -93,7 +93,9 @@ namespace skyblock_generator {
     void Island::setTreeHelperBlocks(mcpp::Coordinate treeCoord, mcpp::BlockType block) const {
         setIslandBlock({ treeCoord.x - 1, treeCoord.y + 1, treeCoord.z }, block);
         setIslandBlock({ treeCoord.x - 1, treeCoord.y + 2, treeCoord.z }, block);
-        // setIslandBlock({ treeCoord.x - 1, treeCoord.y + 3, treeCoord.z }, block);
+        setIslandBlock({ treeCoord.x, treeCoord.y + 2, treeCoord.z - 1 }, block);
+        setIslandBlock({ treeCoord.x + 1, treeCoord.y + 2, treeCoord.z }, block);
+        setIslandBlock({ treeCoord.x, treeCoord.y + 2, treeCoord.z + 1 }, block);
         setIslandBlock({ treeCoord.x, treeCoord.y + 8, treeCoord.z }, block);
     }
 
