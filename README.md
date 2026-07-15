@@ -15,7 +15,7 @@ My Minecraft skyblock island generator project uses the [mcpp](https://github.co
 Once the ELCI plugin is installed on a Spigot server and is running, join the server with `localhost` as the Server Address.
 
 ### Linux/WSL x86_64
-Download the released `skyblock-generator-1.0.0-Linux.tar.gz` archive found here: . Extract the files then run the application in a terminal:
+Download the released `skyblock-generator-1.0.0-Linux.tar.gz` archive found here: https://github.com/alexd-ev/skyblock-generator/releases/latest. Extract the files then run the application in a terminal:
 ```bash
 tar -xvf skyblock-generator-1.0.0-Linux.tar.gz
 ./skyblock-generator-1.0.0-Linux/bin/skyblock-generator
