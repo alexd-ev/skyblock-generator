@@ -18,6 +18,7 @@ namespace skyblock_generator {
     // to avoid frequent reallocations when tracking placed blocks.
     Island::Island(std::uint8_t width, std::uint8_t length, std::uint8_t height, mcpp::Coordinate basepoint, mcpp::MinecraftConnection& mc)
         : width{ width }, length{ length }, height{ height }, basepoint{ basepoint }, mc{ mc } {
+        // Typical number of island blocks for an island L-Shape (total cuboid volume - top right corner = L-Shape)
         islandBlockCoords.reserve(width * length * height - width / 2 * length / 2 * height);
     }
 
@@ -48,7 +49,9 @@ namespace skyblock_generator {
             std::make_pair("pumpkin_seeds", "1"),
             std::make_pair("birch_sapling", "1"),
         };
+        // Place chest at the top of the L-Shape centred
         placeChestWithContents({ width - 1, height, length / 4 }, chestContents);
+        // Place tree at the bottom right corner of the L-Shape
         placeTree({ 0, height, length - 1 });
     }
 
@@ -60,10 +63,12 @@ namespace skyblock_generator {
         for (std::uint8_t x = 0; x < width; ++x) {
             for (std::uint8_t y = 0; y < height; ++y) {
                 mcpp::Coordinate islandBlockCoord{ x, y, z };
+                // Bottom layers are Dirt
                 if (y < height - 1) {
                     islandBlockCoords.push_back(islandBlockCoord);
                     setIslandBlock(islandBlockCoord, dirtBlock);
                 }
+                // Top layer is Grass
                 else {
                     islandBlockCoords.push_back(islandBlockCoord);
                     setIslandBlock(islandBlockCoord, grassBlock);
@@ -75,7 +80,7 @@ namespace skyblock_generator {
     // Remove the island by replacing each tracked block with AIR and
     // clearing the tracked coordinates vector.
     void Island::removeIsland() {
-        for (const auto& coord : islandBlockCoords) {
+        for (const mcpp::Coordinate& coord : islandBlockCoords) {
             setIslandBlock(coord, mcpp::Blocks::AIR);
         }
         islandBlockCoords.clear();
@@ -95,6 +100,7 @@ namespace skyblock_generator {
     // Place a chest at the given coordinate and populate slots using
     // `item replace` commands.
     void Island::placeChestWithContents(mcpp::Coordinate chestCoord, const std::array<std::pair<std::string, std::string>, 7>& chestContents) {
+        // Use doCommand for setting chest direction
         mc.doCommand(std::format("setblock {} {} {} chest[facing=west]", basepoint.x + chestCoord.x, basepoint.y + chestCoord.y, basepoint.z + chestCoord.z));
         std::uint8_t chestSlotIndex{ 0 };
         for (const auto& [item, count] : chestContents) {
@@ -109,12 +115,15 @@ namespace skyblock_generator {
     void Island::placeTree(mcpp::Coordinate treeCoord) {
         setTreeHelperBlocks(treeCoord, mcpp::Blocks::STONE);
         setIslandBlock(treeCoord, mcpp::Blocks::OAK_SAPLING);
+        // Grow tree and remove leaves from previous tree
         setRandomTickSpeed("20000");
+        // Remove item drops from previous tree
         setItemDespawnTime("1");
         std::this_thread::sleep_for(std::chrono::seconds(10));
         setRandomTickSpeed("3");
         setItemDespawnTime("6000");
         setTreeHelperBlocks(treeCoord, mcpp::Blocks::AIR);
+        // Add tree wood block
         for (std::uint8_t y = 0; y < 5; ++y) {
             islandBlockCoords.push_back({ treeCoord.x, treeCoord.y + y, treeCoord.z });
         }
