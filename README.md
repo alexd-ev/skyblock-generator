@@ -12,22 +12,23 @@ My Minecraft skyblock island generator project uses the [mcpp](https://github.co
 [Recreate Island Video](https://github.com/user-attachments/assets/cf43538c-ccae-49f8-8c73-82693d64128e)
 
 ## Technical Specification
-Once the ELCI plugin is installed on a Spigot server and is running, join the server with `localhost` as the Server Address. Download the released executable WIP. Then run the application in a terminal:
-#### Linux/WSL
+Once the ELCI plugin is installed on a Spigot server and is running, join the server with `localhost` as the Server Address.
+
+### Linux/WSL x86_64
+Download the released `skyblock-generator-1.0.0-Linux.tar.gz` archive found here: . Extract the files then run the application in a terminal:
 ```bash
-./
+tar -xvf skyblock-generator-1.0.0-Linux.tar.gz
+./skyblock-generator-1.0.0-Linux/bin/skyblock-generator
 ```
 
-#### macOS
-```bash
-./
-```
+### macOS
+See [Packaging the Code](#packaging-the-code). Then locate the package in `build/`.
 
-To build and run the code locally, install [mcpp](https://github.com/rozukke/mcpp#installation). If on Linux/WSL run this command to update the system's shared library cache:
+To build and run the code, [CMake 3.20+](https://cmake.org/download/) is required. Alongside a C++ compiler that supports C++23+ such as [g++15](https://ftp.gnu.org/gnu/gcc/gcc-15.2.0/) as well as a build engine such as [make](https://ftp.gnu.org/gnu/make/). If on Linux/WSL run this command to update the system's shared library cache:
 ```bash
 sudo ldconfig
 ```
-If using most IDE CMake plugins, set the build variant to `Release`. The build files should automatically generate and can build and run from IDE. Otherwise, can generate, build and run from terminal (see [Building and Running the code](#building-and-running-the-code)).
+If using most IDE CMake plugins, set the build variant to `Release`. The [mcpp](https://github.com/rozukke/mcpp) library should automatically download; build files should also automatically generate and can build and run from IDE. Otherwise, can  download, generate, build and run from terminal (see [Building and Running the code](#building-and-running-the-code)).
 
 ## Libraries
 * `mcpp`
@@ -61,9 +62,16 @@ skyblock-generator/
 # Building and Running the Code
 Generate build files, build and run the application:
 ```bash
-cmake -DCMAKE_BUILD_TYPE=Release -B build
-cmake --build build
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
 ./build/skyblock-generator
+```
+
+# Packaging the Code
+First [build](#building-and-running-the-code), then package:
+```bash
+cd build
+cpack -C Release
 ```
 
 # Author
