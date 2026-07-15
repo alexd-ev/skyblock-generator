@@ -12,7 +12,7 @@ My Minecraft skyblock island generator project uses the [mcpp](https://github.co
 [Recreate Island Video](https://github.com/user-attachments/assets/cf43538c-ccae-49f8-8c73-82693d64128e)
 
 ## Technical Specification
-Spigot Server 1.21.3+ is required. Once the ELCI plugin is installed on a Spigot server and is running, join the server with `localhost` as the Server Address.
+[Spigot](https://www.spigotmc.org/wiki/spigot-installation/) server 1.21.3+ is required. Once the [ELCI](https://github.com/rozukke/ELCI/releases/tag/test-release) plugin is installed on a Spigot server and is running, join the server with `localhost` as the Server Address.
 
 ### Linux/WSL x86_64
 Download the released `skyblock-generator-1.0.0-Linux.tar.gz` archive found here: https://github.com/alexd-ev/skyblock-generator/releases/latest. Extract the files then run the application in a terminal:
