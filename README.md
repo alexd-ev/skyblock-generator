@@ -3,13 +3,13 @@
 My Minecraft skyblock island generator project uses the [mcpp](https://github.com/rozukke/mcpp) interfacing library with Minecraft Java Edition. The project showcases creating, removing and recreating the classic skyblock island in a Minecraft world. It runs a console menu with user input to perform the functions above.
 
 ### Creating
-
+[Create Island Video](https://github.com/user-attachments/assets/21a33a08-0c89-48e0-a2a0-4661b4db872a)
 
 ### Removing
-
+[Remove Island Video](https://github.com/user-attachments/assets/f7ad6979-6d55-434b-933b-2ff597969e86)
 
 ### Recreating
-
+[Recreate Island Video](https://github.com/user-attachments/assets/cf43538c-ccae-49f8-8c73-82693d64128e)
 
 ## Technical Specification
 Once the ELCI plugin is installed on a Spigot server and is running, join the server with `localhost` as the Server Address. Download the released executable WIP. Then run the application in a terminal:
@@ -47,8 +47,6 @@ Island.cpp                                  - Island class definition
 ```
 skyblock-generator/
 ├── build/                                  - Generated build directory
-├── docs/images/
-│   └── *.png                               - Documentation images
 ├── include/skyblock_generator/
 │   └── *.hpp                               - Header files
 ├── src/
