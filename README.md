@@ -24,10 +24,8 @@ tar -xvf skyblock-generator-1.0.0-Linux.tar.gz
 ### macOS
 See [Packaging the Code](#packaging-the-code). Then locate the package in `build/`.
 
-To build and run the code, [CMake 3.20+](https://cmake.org/download/) is required. Alongside a C++ compiler that supports C++23+ such as [g++15](https://ftp.gnu.org/gnu/gcc/gcc-15.2.0/) as well as a build engine such as [make](https://ftp.gnu.org/gnu/make/). If on Linux/WSL run this command to update the system's shared library cache:
-```bash
-sudo ldconfig
-```
+To build and run the code, [CMake 3.20+](https://cmake.org/download/) is required. Alongside a C++ compiler that supports C++23+ such as [g++15](https://ftp.gnu.org/gnu/gcc/gcc-15.2.0/) as well as a build engine such as [make](https://ftp.gnu.org/gnu/make/).
+
 If using most IDE CMake plugins, set the build variant to `Release`. The [mcpp](https://github.com/rozukke/mcpp) library should automatically download; build files should also automatically generate and can build and run from IDE. Otherwise, can  download, generate, build and run from terminal (see [Building and Running the code](#building-and-running-the-code)).
 
 ## Libraries
