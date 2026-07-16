@@ -1,6 +1,6 @@
 # Minecraft Skyblock Generator
 ## Overview
-My Minecraft skyblock island generator project uses the [mcpp](https://github.com/rozukke/mcpp) interfacing library with Minecraft Java Edition. The project showcases creating, removing and recreating the classic skyblock island in a Minecraft world. It runs a console menu with user input to perform the functions above.
+My Minecraft skyblock island generator project uses the [mcpp](https://github.com/rozukke/mcpp) interfacing library with Minecraft Java Edition. The project showcases creating, removing and recreating the classic skyblock island in a Minecraft world (see https://github.com/alexd-ev/skyblock-generator-lc3 for the LC3 Assembly version). It runs a console menu with user input to perform the functions above.
 
 ### Creating
 [Create Island Video](https://github.com/user-attachments/assets/21a33a08-0c89-48e0-a2a0-4661b4db872a)
